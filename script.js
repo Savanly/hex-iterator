@@ -65,6 +65,7 @@ function getColor() {
         let thirdValue = hexValues[thirdIndex % maxIndex];
 
         let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
+        // You might as well draw the canvas pixels here
         console.log(fullValue); // this will be the return value of the method
         count++;
 
