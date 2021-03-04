@@ -31,19 +31,28 @@ let count = 0;
 console.log("max hex:", maxHexValues);
 
 // 400x400
+let maxWidth = 400;
+let maxHeight = 400;
+let maxPixels = maxWidth * maxHeight;
+
 var canvas = document.getElementById("pixel-container");
 var canvasContext = canvas.getContext("2d");
-canvasContext.lineWidth = 3;
+canvasContext.lineWidth = 1;
 canvasContext.strokeStyle = "#01a";
 
 let currentX = 0;
-for (let i = 0; i < 400; i++) {
+let currentY = 0;
+for (let i = 0; i < 600; i++) {
     // this has to become a single pixel instead of a whole line
 
-    let lineY = 7;
+    if (maxPixels % i == 0) {
+        currentY += 1;
+        console.log("Max exceeded");
+        currentX = 0;
+    }
     canvasContext.strokeStyle = "#0ff";
-    canvasContext.moveTo(0, lineY);
-    canvasContext.lineTo(++currentX, lineY);
+    canvasContext.moveTo(currentX, currentY);
+    canvasContext.lineTo(++currentX, currentY);
     canvasContext.stroke();
 }
 
@@ -66,7 +75,7 @@ function getColor() {
 
         let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
         // You might as well draw the canvas pixels here
-        console.log(fullValue); // this will be the return value of the method
+        console.log(fullValue);
         count++;
 
         thirdIndex++;
@@ -80,4 +89,4 @@ function getColor() {
     }
 }
 
-getColor();
+// getColor();
