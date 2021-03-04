@@ -24,7 +24,7 @@ const hexValues = [
 const maxColumns = 50;
 const maxRows = 20;
 
-const maxHexDigits = 3;
+const maxHexDigits = 4;
 const maxHexValues = Math.pow(hexValues.length, maxHexDigits);
 let count = 0;
 
@@ -77,28 +77,47 @@ function getColor() {
     let firstIndex = 0;
     let secondIndex = 0;
     let thirdIndex = 0;
+    let fourthIndex = 0;
 
     //     console.log(maxIndex);
 
     while (count < iterationLimit) {
-        let firstValue = hexValues[firstIndex];
+        let firstValue = hexValues[firstIndex % maxIndex];
         let secondValue = hexValues[secondIndex % maxIndex];
         let thirdValue = hexValues[thirdIndex % maxIndex];
+        let fourthValue = hexValues[fourthIndex % maxIndex];
 
-        let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
+        let fullValue = `#${firstValue}${secondValue}${thirdValue}${fourthValue}`;
         // You might as well draw the canvas pixels here
         console.log(fullValue);
         setPixel(count, fullValue);
         count++;
 
-        thirdIndex++;
-        if (thirdIndex % maxIndex == 0) {
+        firstIndex++;
+        if (firstIndex % maxIndex == 0) {
             secondIndex++;
         }
 
-        if (secondIndex % maxIndex == 0 && thirdIndex % maxIndex == 0) {
-            firstIndex++;
+        if (firstIndex % maxIndex == 0 && secondIndex % maxIndex == 0) {
+            thirdIndex++;
         }
+
+        if (
+            firstIndex % maxIndex == 0 &&
+            secondIndex % maxIndex == 0 &&
+            thirdIndex % maxIndex == 0
+        ) {
+            fourthValue++;
+        }
+
+        // thirdIndex++;
+        // if (thirdIndex % maxIndex == 0) {
+        //     secondIndex++;
+        // }
+
+        // if (secondIndex % maxIndex == 0 && thirdIndex % maxIndex == 0) {
+        //     firstIndex++;
+        // }
     }
 }
 
