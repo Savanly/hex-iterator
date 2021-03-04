@@ -38,22 +38,34 @@ let maxPixels = maxWidth * maxHeight;
 var canvas = document.getElementById("pixel-container");
 var canvasContext = canvas.getContext("2d");
 canvasContext.lineWidth = 1;
-canvasContext.strokeStyle = "#01a";
+// canvasContext.strokeStyle = "#01a";
 
 let currentX = 0;
 let currentY = 0;
-for (let i = 0; i < 600; i++) {
-    // this has to become a single pixel instead of a whole line
+// for (let i = 0; i < 10000; i++) {
+//     // this has to become a single pixel instead of a whole line
+//     setPixel(i);
+// }
 
-    if (maxPixels % i == 0) {
+function setPixel(i, hex) {
+    // if (i > maxPixels) {
+    //     console.log("Loop got stuck.");
+    //     return;
+    //     // break;
+    // }
+    if (i == (currentY + 1) * maxWidth) {
         currentY += 1;
         console.log("Max exceeded");
         currentX = 0;
     }
-    canvasContext.strokeStyle = "#0ff";
+    canvasContext.strokeStyle = hex;
     canvasContext.moveTo(currentX, currentY);
     canvasContext.lineTo(++currentX, currentY);
     canvasContext.stroke();
+}
+
+function Wait(ms) {
+    return new Promise((res, rej) => setTimeout(() => res(), ms));
 }
 
 function getColor() {
@@ -76,6 +88,7 @@ function getColor() {
         let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
         // You might as well draw the canvas pixels here
         console.log(fullValue);
+        setPixel(count, fullValue);
         count++;
 
         thirdIndex++;
@@ -89,4 +102,4 @@ function getColor() {
     }
 }
 
-// getColor();
+getColor();
