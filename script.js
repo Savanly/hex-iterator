@@ -84,28 +84,49 @@ var firstIndex = 0;
 var secondIndex = 0;
 var thirdIndex = 0;
 var fourthIndex = 0;
+var fifthIndex = 0;
+var sixthIndex = 0;
 
 function getColor() {
-  
+
     const maxIndex = hexValues.length;
 
-    let firstValue = hexValues[firstIndex % maxIndex];
-    let secondValue = hexValues[secondIndex % maxIndex];
-    let thirdValue = hexValues[thirdIndex % maxIndex];
+    let sixthValue = hexValues[sixthIndex];
+    let fifthValue = hexValues[fifthIndex];
+    let fourthValue = hexValues[fourthIndex];
+    let thirdValue = hexValues[thirdIndex];
+    let secondValue = hexValues[secondIndex];
+    let firstValue = hexValues[firstIndex];
 
-    let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
-  
+    // let fullValue = `#${thirdValue}${secondValue}${firstValue}`;
+    let fullValue = `#${thirdValue}${secondValue}${firstValue}`;
 
-    firstIndex++;
-    if (firstIndex % maxIndex == 0) {
-        secondIndex++;
+
+    if (thirdIndex == maxIndex - 1) {
+        thirdIndex = 0;
     }
 
-    if (firstIndex % maxIndex == 0 && secondIndex % maxIndex == 0) {
+    if (secondIndex == maxIndex - 1) {
+        secondIndex = 0;
         thirdIndex++;
     }
 
- 
+    if (firstIndex == maxIndex - 1) {
+        firstIndex = 0;
+        secondIndex++;
+
+    }
+
+    firstIndex++;
+    // if (firstIndex % maxIndex == 0) {
+    //     secondIndex++;
+    // }
+
+    // if (firstIndex % maxIndex == 0 && secondIndex % maxIndex == 0) {
+    //     thirdIndex++;
+    // }
+
+
 
     return fullValue;
 }
