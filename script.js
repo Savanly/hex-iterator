@@ -45,22 +45,26 @@ var blockHeight = blockXY;
 
 var lastColor;
 
+var drawsHorizontally = true;
+
 function drawIt() {
     // Used when drawing horizontally
-    // if (y > canvas.height) {
-    //     return;
-    // }
-    // if (x > canvas.width - blockWidth) {
-    //     x = 0;
-    //     y += blockHeight;
-    // }
-
-    // Used when drawing vertically
-    if(x > canvas.width) {
-        return;
+    if (drawsHorizontally) {
+        if (y > canvas.height) {
+            return;
+        }
+        if (x > canvas.width - blockWidth) {
+            x = 0;
+            y += blockHeight;
+        }
+    } else {
+        // Used when drawing vertically
+        if (x > canvas.width) {
+            return;
+        }
     }
 
-    if(y > canvas.height - blockHeight) {
+    if (y > canvas.height - blockHeight) {
         y = 0;
         x += blockWidth;
     }
@@ -70,7 +74,14 @@ function drawIt() {
     // canvasContext.clearRect(0, 0, canvas.width, canvas.height);
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, blockWidth, blockHeight);
-    y += blockXY;
+
+    if (drawsHorizontally) {
+
+        x += blockXY;
+    } else {
+        y += blockXY;
+
+    }
 
     lastColor = color;
 
