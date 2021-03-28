@@ -47,6 +47,10 @@ var lastColor;
 
 var drawsHorizontally = true;
 
+function switchAxis(){
+    drawsHorizontally = !drawsHorizontally;
+}
+
 function drawIt() {
     // Used when drawing horizontally
     if (drawsHorizontally) {
