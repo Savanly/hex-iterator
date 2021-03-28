@@ -46,9 +46,14 @@ var blockHeight = blockXY;
 var lastColor;
 
 var drawsHorizontally = true;
+var drawsBackwards = false;
 
-function switchAxis(){
+function switchAxis() {
     drawsHorizontally = !drawsHorizontally;
+}
+
+function switchDirection() {
+    drawsBackwards = !drawsBackwards;
 }
 
 function drawIt() {
@@ -80,11 +85,17 @@ function drawIt() {
     canvasContext.fillRect(x, y, blockWidth, blockHeight);
 
     if (drawsHorizontally) {
-
-        x += blockXY;
+        if (drawsBackwards) {
+            x -= blockXY;
+        } else {
+            x += blockXY;
+        }
     } else {
-        y += blockXY;
-
+        if(drawsBackwards) {
+            y -= blockXY;
+        } else {
+            y += blockXY;
+        }
     }
 
     lastColor = color;
