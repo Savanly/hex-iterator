@@ -21,19 +21,12 @@ const hexValues = [
     "e",
     "f"
 ];
-const maxColumns = 50;
-const maxRows = 20;
 
-const maxHexDigits = 4;
+const maxHexDigits = 6;
 const maxHexValues = Math.pow(hexValues.length, maxHexDigits);
 let count = 0;
 
 console.log("max hex:", maxHexValues);
-
-// 400x400
-let maxWidth = 400;
-let maxHeight = 400;
-let maxPixels = maxWidth * maxHeight;
 
 var colorCounterSpan = document.getElementById("colorCounter");
 var lastColorSpan = document.getElementById("lastHexColor");
@@ -46,19 +39,30 @@ maxColorSpan.innerHTML = maxHexValues;
 
 var x = 0;
 var y = 0;
-var blockXY = 10;
+var blockXY = 2;
 var blockWidth = blockXY;
 var blockHeight = blockXY;
 
 var lastColor;
 
 function drawIt() {
-    if (y > canvas.height) {
+    // Used when drawing horizontally
+    // if (y > canvas.height) {
+    //     return;
+    // }
+    // if (x > canvas.width - blockWidth) {
+    //     x = 0;
+    //     y += blockHeight;
+    // }
+
+    // Used when drawing vertically
+    if(x > canvas.width) {
         return;
     }
-    if (x > canvas.width - blockWidth) {
-        x = 0;
-        y += blockHeight;
+
+    if(y > canvas.height - blockHeight) {
+        y = 0;
+        x += blockWidth;
     }
     window.requestAnimationFrame(drawIt);
 
@@ -66,7 +70,7 @@ function drawIt() {
     // canvasContext.clearRect(0, 0, canvas.width, canvas.height);
     canvasContext.fillStyle = color;
     canvasContext.fillRect(x, y, blockWidth, blockHeight);
-    x += blockXY;
+    y += blockXY;
 
     lastColor = color;
 
@@ -100,7 +104,7 @@ function getColor() {
     let secondValue = hexValues[secondIndex];
     let firstValue = hexValues[firstIndex];
 
-    // let fullValue = `#${thirdValue}${secondValue}${firstValue}`;
+    // let fullValue = `#${firstValue}${secondValue}${thirdValue}${fourthValue}${fifthValue}${sixthValue}`;
     let fullValue = `#${sixthValue}${fifthValue}${fourthValue}${thirdValue}${secondValue}${firstValue}`;
 
 
