@@ -37,10 +37,12 @@ let maxPixels = maxWidth * maxHeight;
 
 var colorCounterSpan = document.getElementById("colorCounter");
 var lastColorSpan = document.getElementById("lastHexColor");
+var maxColorSpan = document.getElementById("maxHexColors");
 
 var canvas = document.getElementById("pixel-container");
 var canvasContext = canvas.getContext("2d");
 
+maxColorSpan.innerHTML = maxHexValues;
 
 var x = 0;
 var y = 0;
