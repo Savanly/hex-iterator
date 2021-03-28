@@ -101,11 +101,20 @@ function getColor() {
     let firstValue = hexValues[firstIndex];
 
     // let fullValue = `#${thirdValue}${secondValue}${firstValue}`;
-    let fullValue = `#${thirdValue}${secondValue}${firstValue}`;
+    let fullValue = `#${sixthValue}${fifthValue}${fourthValue}${thirdValue}${secondValue}${firstValue}`;
 
 
+    if (fifthIndex == maxIndex - 1) {
+        fifthIndex = 0;
+        sixthIndex++;
+    }
+    if (fourthIndex == maxIndex - 1) {
+        fourthIndex = 0;
+        fifthIndex++;
+    }
     if (thirdIndex == maxIndex - 1) {
         thirdIndex = 0;
+        fourthIndex++;
     }
 
     if (secondIndex == maxIndex - 1) {
