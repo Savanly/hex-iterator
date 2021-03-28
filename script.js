@@ -40,15 +40,6 @@ var lastColorSpan = document.getElementById("lastHexColor");
 
 var canvas = document.getElementById("pixel-container");
 var canvasContext = canvas.getContext("2d");
-canvasContext.lineWidth = 1;
-// canvasContext.strokeStyle = "#01a";
-
-let currentX = 0;
-let currentY = 0;
-// for (let i = 0; i < 10000; i++) {
-//     // this has to become a single pixel instead of a whole line
-//     setPixel(i);
-// }
 
 
 var x = 0;
@@ -81,25 +72,8 @@ function drawIt() {
     lastColorSpan.innerHTML = lastColor;
 }
 
-//window.requestAnimationFrame(drawIt);
 drawIt();
 
-function setPixel(i, hex) {
-    // if (i > maxPixels) {
-    //     console.log("Loop got stuck.");
-    //     return;
-    //     // break;
-    // }
-    if (i == (currentY + 1) * maxWidth) {
-        currentY += 1;
-        console.log("Max exceeded");
-        currentX = 0;
-    }
-    canvasContext.strokeStyle = hex;
-    canvasContext.moveTo(currentX, currentY);
-    canvasContext.lineTo(++currentX, currentY);
-    canvasContext.stroke();
-}
 
 function Wait(ms) {
     return new Promise((res, rej) => setTimeout(() => res(), ms));
@@ -112,30 +86,15 @@ var thirdIndex = 0;
 var fourthIndex = 0;
 
 function getColor() {
-    // let count = 0;
-    // const iterationLimit = maxHexValues;
-
+  
     const maxIndex = hexValues.length;
 
-    // let firstIndex = 0;
-    // let secondIndex = 0;
-    // let thirdIndex = 0;
-    // let fourthIndex = 0;
-
-    //     console.log(maxIndex);
-
-    // while (count < iterationLimit) {
     let firstValue = hexValues[firstIndex % maxIndex];
     let secondValue = hexValues[secondIndex % maxIndex];
     let thirdValue = hexValues[thirdIndex % maxIndex];
-    // let fourthValue = hexValues[fourthIndex % maxIndex];
 
-    // let fullValue = `#${firstValue}${secondValue}${thirdValue}${fourthValue}`;
     let fullValue = `#${firstValue}${secondValue}${thirdValue}`;
-    // You might as well draw the canvas pixels here
-    // console.log(fullValue);
-    // setPixel(count, fullValue);
-    // count++;
+  
 
     firstIndex++;
     if (firstIndex % maxIndex == 0) {
@@ -146,30 +105,7 @@ function getColor() {
         thirdIndex++;
     }
 
-    // if (
-    //     firstIndex % maxIndex == 0 &&
-    //     secondIndex % maxIndex == 0 &&
-    //     thirdIndex % maxIndex == 0
-    // ) {
-    //     fourthValue++;
-    // }
-
-    // thirdIndex++;
-    // if (thirdIndex % maxIndex == 0) {
-    //     secondIndex++;
-    // }
-
-    // if (secondIndex % maxIndex == 0 && thirdIndex % maxIndex == 0) {
-    //     firstIndex++;
-    // }
-    // }
+ 
 
     return fullValue;
 }
-
-// let testCount = 0;
-
-// while (testCount < 40) {
-//     getColor();
-//     testCount++;
-// }
